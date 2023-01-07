@@ -32,12 +32,13 @@ public class GuardEntity extends LivingEntity {
     }
 
     @Override
-    public ItemStack getItemBySlot(EquipmentSlot p_21127_) {
-        return null;
+    public ItemStack getItemBySlot(EquipmentSlot equipmentSlot) {
+        return ItemStack.EMPTY;
     }
 
+
     @Override
-    public void setItemSlot(EquipmentSlot p_21036_, ItemStack p_21037_) {
+    public void setItemSlot(EquipmentSlot equipmentSlot, ItemStack itemStack) {
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.CHAINMAIL_HELMET));
         this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
@@ -53,6 +54,9 @@ public class GuardEntity extends LivingEntity {
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.damage"));
+    }
+    public static void init() {
+
     }
 
     @Override

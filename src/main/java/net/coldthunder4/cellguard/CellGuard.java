@@ -27,7 +27,7 @@ public class CellGuard
 
         ModItems.register(modEventBus);
 
-        ModEntityTypes.register(modEventBus);
+        //ModEntityTypes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

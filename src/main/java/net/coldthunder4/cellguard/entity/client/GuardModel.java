@@ -16,8 +16,8 @@ public class GuardModel extends LivingEntityRenderer {
 
     private static final ResourceLocation TEXTURES = new ResourceLocation(CellGuard.MOD_ID, "textures/entities/guard.png");
 
-    public GuardModel(EntityRendererProvider.Context p_174289_, EntityModel p_174290_, float p_174291_) {
-        super(p_174289_, p_174290_, p_174291_);
+    public GuardModel(EntityRendererProvider.Context context, EntityModel entityModel, float p_174291_) {
+        super(context, entityModel, p_174291_);
     }
 
     @Override
