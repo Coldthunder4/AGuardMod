@@ -19,8 +19,9 @@ public class ModEvents {
     }
 
      */
+
     @SubscribeEvent
     public static void entityAttributes(EntityAttributeCreationEvent event){
-        event.put(ModEntityTypes.GUARD.get(), GuardEntity.getGuardEntityAttributes().build());
+        event.put(ModEntityTypes.GUARD.get(), GuardEntity.createAttributes().build());
     }
 }
