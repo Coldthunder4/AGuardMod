@@ -17,10 +17,12 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.DefendVillageTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -48,9 +50,12 @@ public class GuardEntity extends PathfinderMob {
 
     public GuardEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
+        xpReward = 0;
+        setNoAi(false);
         setCustomName(Component.literal("Guard " + this.getHealth()));
-
         setCustomNameVisible(true);
+
+        setPersistenceRequired();
 
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_SWORD));
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.DIAMOND_HELMET));
@@ -58,7 +63,7 @@ public class GuardEntity extends PathfinderMob {
         this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(Items.DIAMOND_LEGGINGS));
         this.setItemSlot(EquipmentSlot.FEET, new ItemStack(Items.DIAMOND_BOOTS));
 
-        setPersistenceRequired();
+
 
 
 
@@ -91,12 +96,6 @@ public class GuardEntity extends PathfinderMob {
 
 
 /*
-    public static AttributeSupplier.Builder getGuardEntityAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, .6).add(Attributes.KNOCKBACK_RESISTANCE, 1);
-    }
-*/
-
-/*
     @Override
     public Iterable<ItemStack> getArmorSlots() {
         return null;
@@ -110,7 +109,6 @@ public class GuardEntity extends PathfinderMob {
 
     @Override
     public void setItemSlot(EquipmentSlot equipmentSlot, ItemStack itemStack) {
-
 
     }
 
@@ -200,10 +198,18 @@ public class GuardEntity extends PathfinderMob {
             return false;
         return super.hurt(source, amount);
     }
+
+    @Override
+    public MobType getMobType() {
+        return MobType.UNDEFINED;
+    }
+
     @Override
     protected void registerGoals() {
-        /*
 
+        this.goalSelector.addGoal(7, new OpenDoorGoal(this, true));
+
+        /*
         this.goalSelector.addGoal(1, new MoveToBlockGoal() {
             @Override
             protected boolean isValidTarget(LevelReader p_25619_, BlockPos p_25620_) {
@@ -236,10 +242,10 @@ public class GuardEntity extends PathfinderMob {
                             }
 
                     }*/
-            @Override
+            /*@Override
             public boolean requiresUpdateEveryTick() {
                 return true;
-            }
+            }*/
 
             @Override
             protected double getAttackReachSqr(LivingEntity entity) {
@@ -253,6 +259,15 @@ public class GuardEntity extends PathfinderMob {
         //this.goalSelector.addGoal(1, );
 
         this.goalSelector.addGoal(4, new RandomStrollGoal(this, 0));
+
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Monster.class, true, true));
+
+        this.goalSelector.addGoal(6, new DoorInteractGoal(this) {
+            @Override
+            public boolean canUse() {
+                return super.canUse();
+            }
+        });
 
 
 
@@ -278,7 +293,7 @@ public class GuardEntity extends PathfinderMob {
         builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.00000001);
         builder = builder.add(Attributes.ARMOR_TOUGHNESS, 12);
         builder = builder.add(ForgeMod.SWIM_SPEED.get(), 12);
-        builder = builder.add(ForgeMod.ATTACK_RANGE.get(), 4);
+        builder = builder.add(ForgeMod.ATTACK_RANGE.get(), 6);
         return builder;
     }
 
