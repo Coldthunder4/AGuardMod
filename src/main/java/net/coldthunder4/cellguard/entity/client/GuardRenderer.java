@@ -8,6 +8,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.TooltipFlag;
 
 //public class GuardRenderer extends HumanoidMobRenderer {
 
@@ -18,7 +20,6 @@ import net.minecraft.resources.ResourceLocation;
                     new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR))));
         }
 
-
     /*
     public GuardRenderer(EntityRendererProvider.Context context) {
         super(context, new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER)), 0.5f);
@@ -26,8 +27,6 @@ import net.minecraft.resources.ResourceLocation;
         this.addLayer(new HumanoidArmorLayer(this, new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_INNER_ARMOR)),
                 new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR))));
     }*/
-
-
     public ResourceLocation getTextureLocation(GuardEntity entity) {
         return new ResourceLocation("cellguard:textures/entities/guard.png");
     }

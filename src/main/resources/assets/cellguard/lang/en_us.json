@@ -1,5 +1,7 @@
 {
   "item.cellguard.guard": "Guard",
 
+  "block.cellguard.guard_block": "Guard Block",
+
   "itemGroup.guardtab": "Guard Tab"
 }

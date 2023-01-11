@@ -1,6 +1,7 @@
 package net.coldthunder4.cellguard;
 
 import com.mojang.logging.LogUtils;
+import net.coldthunder4.cellguard.block.ModBlocks;
 import net.coldthunder4.cellguard.entity.ModEntityTypes;
 import net.coldthunder4.cellguard.entity.custom.GuardEntity;
 import net.coldthunder4.cellguard.item.ModItems;
@@ -27,7 +28,7 @@ public class CellGuard
 
         ModItems.register(modEventBus);
 
-        //ModEntityTypes.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
