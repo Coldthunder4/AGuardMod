@@ -1,11 +1,29 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-    "item": "minecraft:stick"
-    }
+  "type":"minecraft:crafting_shaped",
+  "group": "cellguard:guard_item",
+    "key": {
+      "A": {
+        "item": "minecraft:nether_star"
+      },
+      "B": {
+        "item": "minecraft:wooden_sword"
+      },
+      "C": {
+        "item": "minecraft:furnace"
+      },
+      "D": {
+        "item": "cellguard:iron_block_cluster_item"
+      },
+      "E": {
+        "item": "cellguard:guard_core_item"
+      }
+    },
+  "pattern": [
+    " A ",
+    "DEB",
+    " C "
   ],
   "result": {
-    "item": "cellguard:guard"
-    }
+    "item": "cellguard:guard_item"
+  }
 }

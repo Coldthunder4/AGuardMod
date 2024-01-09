@@ -9,7 +9,7 @@ public class ModCreativeModeTab {
     public static final CreativeModeTab GUARD_TAB = new CreativeModeTab("guardtab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModItems.GUARD.get());
+            return new ItemStack(ModItems.GUARD_ITEM.get());
         }
     };
 }

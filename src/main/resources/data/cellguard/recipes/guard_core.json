@@ -1,0 +1,23 @@
+{
+  "type":"minecraft:crafting_shaped",
+  "group": "cellguard:guard_core_item",
+  "key": {
+    "A": {
+      "item": "minecraft:diamond_block"
+    },
+    "B": {
+      "item": "cellguard:iron_block_cluster_item"
+    },
+    "C": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "BCB",
+    "CAC",
+    "BCB"
+  ],
+  "result": {
+    "item": "cellguard:guard_core_item"
+  }
+}

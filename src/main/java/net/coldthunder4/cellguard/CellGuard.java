@@ -2,9 +2,12 @@ package net.coldthunder4.cellguard;
 
 import com.mojang.logging.LogUtils;
 import net.coldthunder4.cellguard.block.ModBlocks;
+import net.coldthunder4.cellguard.enchantment.ModEnchantmentsClass;
 import net.coldthunder4.cellguard.entity.ModEntityTypes;
 import net.coldthunder4.cellguard.entity.custom.GuardEntity;
 import net.coldthunder4.cellguard.item.ModItems;
+import net.coldthunder4.cellguard.networking.ModPackets;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -30,16 +33,24 @@ public class CellGuard
 
         ModBlocks.register(modEventBus);
 
+        ModEnchantmentsClass.ENCHANTMENTS.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
 
         ModEntityTypes.ENTITY_TYPES.register(modEventBus);
+
+        CellGuardPacketHandler.registerPackets();
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
+    public static boolean ownerChecker(Player player, GuardEntity cellGuard) {
+        return true;
+    }
 
+    private void commonSetup(final FMLCommonSetupEvent event) {
+
+        ModPackets.register();
     }
 
 

@@ -1,6 +1,7 @@
 package net.coldthunder4.cellguard.entity.client;
 
 
+import net.coldthunder4.cellguard.entity.client.models.CellGuardModel;
 import net.coldthunder4.cellguard.entity.custom.GuardEntity;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -8,25 +9,25 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.item.TooltipFlag;
 
-//public class GuardRenderer extends HumanoidMobRenderer {
 
-    public class GuardRenderer extends HumanoidMobRenderer<GuardEntity, HumanoidModel<GuardEntity>> {
+
+
+
+    public class GuardRenderer extends HumanoidMobRenderer<GuardEntity, HumanoidModel<GuardEntity>>  {
         public GuardRenderer(EntityRendererProvider.Context context) {
-            super(context, new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER)), 0.5f);
+            super(context, new CellGuardModel(context.bakeLayer(ModelLayers.PLAYER)), 0.5f);
             this.addLayer(new HumanoidArmorLayer(this, new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_INNER_ARMOR)),
                     new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR))));
+
+
+
         }
 
-    /*
-    public GuardRenderer(EntityRendererProvider.Context context) {
-        super(context, new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER)), 0.5f);
 
-        this.addLayer(new HumanoidArmorLayer(this, new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_INNER_ARMOR)),
-                new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR))));
-    }*/
+
+
+
     public ResourceLocation getTextureLocation(GuardEntity entity) {
         return new ResourceLocation("cellguard:textures/entities/guard.png");
     }

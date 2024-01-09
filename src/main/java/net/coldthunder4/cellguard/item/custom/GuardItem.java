@@ -1,13 +1,21 @@
 package net.coldthunder4.cellguard.item.custom;
 
+import net.coldthunder4.cellguard.networking.ModPackets;
+import net.coldthunder4.cellguard.networking.SpawnGuardPacket;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class GuardItem extends Item {
     public GuardItem() {
@@ -22,10 +30,15 @@ public class GuardItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if(!level.isClientSide() && hand == InteractionHand.MAIN_HAND) {
-            //summon armor stand with no hitbox
-            //
-            //summon guard
-            //set guard NBT to be the armor stand position or somehow link them so gaurd can return to it when idle
+
+
+
+
+
+
+
+
+
         }
 
         return super.use(level, player, hand);
@@ -36,8 +49,38 @@ public class GuardItem extends Item {
         list.add(Component.literal("A Guard you can place"));
     }
 
+    @Override
+    public int getMaxDamage(ItemStack stack) {
+        return 1;
+    }
 
+
+    @Override
+    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+        return 1;
+    }
+
+
+    @Override
+    public boolean isDamageable(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext useOnContext) {
+        Player player = useOnContext.getPlayer();
+        Level level = useOnContext.getLevel();
+        BlockPos blockpos = useOnContext.getClickedPos();
+        ItemStack itemstack = useOnContext.getItemInHand();
+        if ( player instanceof ServerPlayer) {
+        ModPackets.sendToServer(new SpawnGuardPacket());
+        itemstack.hurtAndBreak(1, player, player1 -> player1.broadcastBreakEvent(useOnContext.getHand()));
+        return InteractionResult.sidedSuccess(level.isClientSide());}
+        return InteractionResult.FAIL;
+    }
 }
-//Output Guard Entity
-//MAKE ENTITY FIRST!!!!
-//Remove Item From Player Hand/Inventory

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @Mod.EventBusSubscriber(modid = CellGuard.MOD_ID, bus =Mod.EventBusSubscriber.Bus.MOD)
 public class ModEvents {
-    /*
+
     @SubscribeEvent
     public static void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(()-> {
@@ -18,7 +18,7 @@ public class ModEvents {
         });
     }
 
-     */
+
 
     @SubscribeEvent
     public static void entityAttributes(EntityAttributeCreationEvent event){

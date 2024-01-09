@@ -1,7 +1,13 @@
 {
-  "item.cellguard.guard": "Guard",
+  "item.cellguard.guard_item": "Guard",
+
+  "item.cellguard.guard_core_item": "Guard Core",
+
+  "item.cellguard.iron_block_cluster_item": "Iron Block Cluster",
 
   "block.cellguard.guard_block": "Guard Block",
 
-  "itemGroup.guardtab": "Guard Tab"
+  "itemGroup.guardtab": "Guard Tab",
+
+  "enchantment.cellguard.guard_damage_reduction": "Guard Damage Reduction"
 }
